@@ -1,22 +1,23 @@
-// // main.ts
-// import { Game } from "./game";
+// import { writable } from 'svelte/store';
+// import { Game } from './game';
 
-// let buttonText: string = "Commencer le jeu";
+// const count: {subscribe: (callback: (value: number) => void) => void, set: (value: number) => void, update: (callback: (value: number) => number) => void} = writable(0);
 
-// const game = new Game();
+// count.subscribe((value: number) => {
+// 	console.log(value);
+// }); // logs '0'
 
-// document.querySelector("#start-button").addEventListener("click", () => {
-//   game.start();
-// });
+// count.set(1); // logs '1'
 
-// document.querySelector("#rock-button").addEventListener("click", () => {
-//   game.chooseRock();
-// });
+// count.update((n: number) => n + 1); // logs '2'
 
-// document.querySelector("#paper-button").addEventListener("click", () => {
-//   game.choosePaper();
-// });
+// const game: Game = new Game();
 
-// document.querySelector("#scissors-button").addEventListener("click", () => {
-//   game.chooseScissors();
-// });
+// game.start();
+
+// game.chooseRock();
+
+// game.choosePaper();
+
+// game.chooseScissors();
+

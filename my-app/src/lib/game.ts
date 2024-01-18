@@ -1,12 +1,14 @@
 export class Game {
   public userScore: number = 0;
-  private computerScore: number = 0;
+  public computerScore: number = 0;
   private counter: number = 0;
+  private result: string = '';
 
   public start(): void {
     this.userScore = 0;
     this.computerScore = 0;
     this.counter = 0;
+    this.result = '';
   }
 
   private computerPlay(): string {
@@ -18,60 +20,58 @@ export class Game {
   public chooseRock(): void {
     const computerChoice: string = this.computerPlay();
     if (computerChoice === "pierre") {
-      console.log("Égalité !");
+      this.result = 'tie';
     } else if (computerChoice === "papier") {
-      console.log("L'ordinateur gagne !");
+      this.result = 'lose';
       this.computerScore++;
     } else {
-      console.log("Vous gagnez !");
+      this.result = 'win';
       this.userScore++;
     }
     this.counter++;
-    this.checkWinner();
   }
 
   public choosePaper(): void {
     const computerChoice: string = this.computerPlay();
     if (computerChoice === "pierre") {
-      console.log("Vous gagnez !");
+      this.result = 'win';
       this.userScore++;
     } else if (computerChoice === "papier") {
-      console.log("Égalité !");
+      this.result = 'tie';
     } else {
-      console.log("L'ordinateur gagne !");
+      this.result = 'lose';
       this.computerScore++;
     }
     this.counter++;
-    this.checkWinner();
   }
 
   public chooseScissors(): void {
     const computerChoice: string = this.computerPlay();
     if (computerChoice === "pierre") {
-      console.log("L'ordinateur gagne !");
+      this.result = 'lose';
       this.computerScore++;
     } else if (computerChoice === "papier") {
-      console.log("Vous gagnez !");
+      this.result = 'win';
       this.userScore++;
     } else {
-      console.log("Égalité !");
+      this.result = 'tie';
     }
-    this.counter++;
-    this.checkWinner();
   }
 
-  private checkWinner(): void {
+  public getResult(): string {
+    return this.result;
+  }
+
+  public checkWinner(): void {
     if (this.counter === 3) {
-      console.log("Fin de la partie !");
-      console.log(`Votre score : ${this.userScore}`);
-      console.log(`Score de l'ordinateur : ${this.computerScore}`);
       if (this.userScore > this.computerScore) {
-        console.log("Vous avez gagné !");
+        console.log("Vous avez gagné la partie !");
       } else if (this.userScore < this.computerScore) {
-        console.log("L'ordinateur a gagné !");
+        console.log("L'ordinateur a gagné la partie !");
       } else {
-        console.log("Match nul !");
+        console.log("La partie est nulle !");
       }
+      this.start();
     }
   }
 }
